@@ -1,54 +1,28 @@
 /**
- * Hoopscope Main JavaScript
- * Handles all UI interactions and business logic
+ * Main JavaScript functionality for Hoopscope website
  * 
- * @version 1.0.0
- * @author Hoopscope Development Team
+ * Contains UI interactions, blog post rendering, and intersection observers
  */
 
-// Import API functions
-import { generateWorkoutPlan, generateArticleSummary, answerArticleQuestion, mockOpenAIAPI } from './api.js';
-
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements
+    // DOM elements
     const blogGridHomepage = document.getElementById('blog-grid-homepage');
-    const generatePlanBtn = document.getElementById('generate-plan-btn');
     const workoutModal = document.getElementById('workout-plan-modal');
     const closeWorkoutModalBtn = document.getElementById('close-workout-modal-btn');
-    const workoutPlanContent = document.getElementById('workout-plan-content');
-    const generateBtnText = document.getElementById('generate-btn-text');
-    const generateLoader = document.getElementById('generate-loader');
-    const errorMessage = document.getElementById('error-message');
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
     const blogHelperModal = document.getElementById('blog-helper-modal');
     const closeBlogHelperModalBtn = document.getElementById('close-blog-helper-modal-btn');
-    const blogHelperOutput = document.getElementById('blog-helper-output');
-    const blogHelperAskBtn = document.getElementById('blog-helper-ask-btn');
-    const blogHelperPromptInput = document.getElementById('blog-helper-prompt');
-    const demoVideoBtn = document.getElementById('demo-video-btn');
-    const videoModal = document.getElementById('video-modal');
-    const closeVideoModalBtn = document.getElementById('close-video-modal-btn');
-    
-    let currentArticleForAI = '';
-    
-    // --- Mobile Menu Functionality ---
-    mobileMenuBtn?.addEventListener('click', () => {
-        const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-        mobileMenuBtn.setAttribute('aria-expanded', !expanded);
-        mobileMenu.style.display = expanded ? 'none' : 'block';
-    });
-    
-    // --- Video Modal Functionality ---
-    demoVideoBtn?.addEventListener('click', (e) => {
-        e.preventDefault();
-        videoModal.classList.remove('hidden');
-    });
-    
-    closeVideoModalBtn?.addEventListener('click', () => {
-        videoModal.classList.add('hidden');
-    });
-    
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Mobile menu toggle
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
     // --- Blog Posts Data ---
     const posts = [
         {
@@ -78,20 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     /**
-     * Create a blog post element
-     * 
-     * @param {Object} post - The post data object
+     * Creates a DOM element for a blog post
+     * @param {Object} post - The blog post data
      * @param {number} index - The index of the post in the array
-     * @returns {HTMLElement} The created post element
+     * @returns {HTMLElement} - The created DOM element
      */
     function createPostElement(post, index) {
         const postEl = document.createElement('div');
         postEl.className = 'card-bg rounded-2xl overflow-hidden flex flex-col scroll-animate';
         
+        // Clean content and get a snippet
         const contentSnippet = post.content.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+        
         postEl.innerHTML = `
             <a href="blog.html" class="block hover:opacity-80 transition-opacity">
-                <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x400/111111/444444?text=Image';">
+                <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover lazy-load" loading="lazy" data-src="${post.image}">
             </a>
             <div class="p-6 flex flex-col flex-grow">
                 <span class="text-orange-400 font-semibold text-sm">${post.category}</span>
@@ -109,12 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Render the homepage blog posts
+     * Renders blog posts on the homepage
      */
     function renderHomepagePosts() {
         if (!blogGridHomepage) return;
+        
         blogGridHomepage.innerHTML = '';
+        
+        // Get the latest 3 posts
         const latestPosts = posts.slice(0, 3);
+        
         latestPosts.forEach((post, index) => {
             const postEl = createPostElement(post, index);
             postEl.style.animationDelay = `${(index + 1) * 0.1}s`;
@@ -122,8 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Initialize blog posts if we're on the homepage
+    if (blogGridHomepage) {
+        renderHomepagePosts();
+    }
+
     // --- Intersection Observer for scroll animations ---
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
+    const observerOptions = { 
+        root: null, 
+        rootMargin: '0px', 
+        threshold: 0.2 
+    };
+    
     const observerCallback = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -135,204 +124,119 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+    
+    // Initialize the Intersection Observer
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     
-    // --- AI Workout Plan Generator ---
-    generatePlanBtn?.addEventListener('click', async () => {
-        const userInput = document.getElementById('workout-prompt').value;
-        errorMessage.classList.add('hidden');
-        
-        if (!userInput.trim()) {
-            errorMessage.textContent = 'Please describe your training goals first.';
-            errorMessage.classList.remove('hidden');
-            return;
-        }
-        
-        generateBtnText.classList.add('hidden');
-        generateLoader.classList.remove('hidden');
-        
-        // Using mock API for demo to avoid costs
-        // In production, use: const response = await generateWorkoutPlan(userInput);
-        const response = await mockOpenAIAPI(userInput);
-        
-        generateBtnText.classList.remove('hidden');
-        generateLoader.classList.add('hidden');
-        
-        if (response.error) {
-            errorMessage.textContent = response.error;
-            errorMessage.classList.remove('hidden');
-            return;
-        }
-        
-        if (response.result) {
-            try {
-                const plan = JSON.parse(response.result);
-                let html = `<h2 id="workout-plan-title" class="text-3xl font-bold text-white mb-2">${plan.planTitle}</h2>`;
-                html += `<p class="text-slate-400 mb-6">Estimated Duration: ${plan.duration}</p>`;
-                
-                plan.phases.forEach(phase => {
-                    html += `<h3 class="text-xl font-semibold text-orange-400 mt-6 mb-3">${phase.phaseTitle}</h3>`;
-                    html += '<ul class="space-y-3">';
-                    phase.exercises.forEach(ex => {
-                        html += `<li class="border-b border-zinc-700 pb-2"><strong class="text-white">${ex.name}:</strong> <span class="text-slate-400">${ex.details}</span></li>`;
-                    });
-                    html += '</ul>';
-                });
-                
-                workoutPlanContent.innerHTML = html;
-                
-            } catch (e) {
-                console.error('Error parsing JSON:', e);
-                workoutPlanContent.innerHTML = `<p class="text-red-400">Could not generate the plan. Please try again.</p>`;
-            }
-        } else {
-            workoutPlanContent.innerHTML = `<p class="text-red-400">Sorry, there was an error generating your workout plan. Please try again.</p>`;
-        }
-        
-        workoutModal.classList.remove('hidden');
-    });
+    // Observe all elements with the scroll-animate class
+    document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
 
-    // Close workout modal
-    closeWorkoutModalBtn?.addEventListener('click', () => workoutModal.classList.add('hidden'));
+    // --- Modal Controls ---
     
-    // --- AI Blog Helper ---
+    // Workout Plan Modal
+    if (closeWorkoutModalBtn && workoutModal) {
+        closeWorkoutModalBtn.addEventListener('click', () => {
+            workoutModal.classList.add('hidden');
+            workoutModal.setAttribute('aria-hidden', 'true');
+        });
+
+        // Close modal on outside click
+        workoutModal.addEventListener('click', (e) => {
+            if (e.target === workoutModal) {
+                workoutModal.classList.add('hidden');
+                workoutModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !workoutModal.classList.contains('hidden')) {
+                workoutModal.classList.add('hidden');
+                workoutModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+    }
+
+    // Blog Helper Modal
+    if (closeBlogHelperModalBtn && blogHelperModal) {
+        closeBlogHelperModalBtn.addEventListener('click', () => {
+            blogHelperModal.classList.add('hidden');
+            blogHelperModal.setAttribute('aria-hidden', 'true');
+        });
+
+        // Close modal on outside click
+        blogHelperModal.addEventListener('click', (e) => {
+            if (e.target === blogHelperModal) {
+                blogHelperModal.classList.add('hidden');
+                blogHelperModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !blogHelperModal.classList.contains('hidden')) {
+                blogHelperModal.classList.add('hidden');
+                blogHelperModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+    }
+
+    // --- AI Blog Helper Button Handlers ---
     if (blogGridHomepage) {
         blogGridHomepage.addEventListener('click', async (e) => {
             const targetButton = e.target.closest('.ai-blog-btn');
             if (targetButton) {
                 e.preventDefault();
+                
+                // Get post data
                 const postIndex = targetButton.dataset.index;
                 const post = posts[postIndex];
-                currentArticleForAI = post.content.replace(/<[^>]*>?/gm, ''); // Store clean text
                 
-                blogHelperOutput.innerHTML = '<div class="w-5 h-5 rounded-full loader mx-auto"></div>';
-                blogHelperModal.classList.remove('hidden');
-                
-                // Using mock API for demo to avoid costs
-                // In production, use: const response = await generateArticleSummary(currentArticleForAI);
-                const response = await mockOpenAIAPI(currentArticleForAI);
-                
-                if (response.result) {
-                    blogHelperOutput.innerHTML = response.result.replace(/\n/g, '<br>');
-                } else if (response.error) {
-                    blogHelperOutput.textContent = `Error: ${response.error}`;
-                } else {
-                    blogHelperOutput.textContent = 'Could not generate summary.';
+                // Store post content and open modal
+                if (window.handleBlogAI) {
+                    window.handleBlogAI(post);
                 }
             }
         });
     }
 
-    // Blog helper follow-up questions
-    blogHelperAskBtn?.addEventListener('click', async () => {
-        const userQuestion = blogHelperPromptInput.value;
-        if (!userQuestion.trim() || !currentArticleForAI) return;
-        
-        blogHelperOutput.innerHTML = '<div class="w-5 h-5 rounded-full loader mx-auto"></div>';
-        
-        // Using mock API for demo to avoid costs
-        // In production, use: const response = await answerArticleQuestion(userQuestion, currentArticleForAI);
-        const response = await mockOpenAIAPI(userQuestion + ' ' + currentArticleForAI);
-        
-        if (response.result) {
-            blogHelperOutput.innerHTML = response.result.replace(/\n/g, '<br>');
-        } else if (response.error) {
-            blogHelperOutput.textContent = `Error: ${response.error}`;
-        } else {
-            blogHelperOutput.textContent = 'Sorry, I could not answer that question.';
-        }
-        
-        blogHelperPromptInput.value = '';
-    });
+    // --- Lazy Loading for Images ---
+    if ('loading' in HTMLImageElement.prototype) {
+        // Browser supports native lazy loading
+        document.querySelectorAll('img.lazy-load').forEach(img => {
+            img.src = img.dataset.src;
+        });
+    } else {
+        // Fallback for browsers that don't support native lazy loading
+        const lazyImageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy-load');
+                    lazyImageObserver.unobserve(img);
+                }
+            });
+        });
 
-    // Close blog helper modal
-    closeBlogHelperModalBtn?.addEventListener('click', () => blogHelperModal.classList.add('hidden'));
-    
-    // Keyboard accessibility for modals
-    const handleEscapeKey = (e) => {
-        if (e.key === 'Escape') {
-            if (workoutModal && !workoutModal.classList.contains('hidden')) {
-                workoutModal.classList.add('hidden');
-            }
-            if (blogHelperModal && !blogHelperModal.classList.contains('hidden')) {
-                blogHelperModal.classList.add('hidden');
-            }
-            if (videoModal && !videoModal.classList.contains('hidden')) {
-                videoModal.classList.add('hidden');
-            }
-        }
-    };
-    
-    document.addEventListener('keydown', handleEscapeKey);
-    
-    // Close modals when clicking outside
-    const handleOutsideClick = (e, modal, modalContent) => {
-        if (e.target === modal) {
-            modal.classList.add('hidden');
-        }
-    };
-    
-    if (workoutModal) {
-        workoutModal.addEventListener('click', (e) => {
-            handleOutsideClick(e, workoutModal, document.querySelector('#workout-plan-modal .modal'));
+        document.querySelectorAll('img.lazy-load').forEach(img => {
+            lazyImageObserver.observe(img);
         });
     }
-    
-    if (blogHelperModal) {
-        blogHelperModal.addEventListener('click', (e) => {
-            handleOutsideClick(e, blogHelperModal, document.querySelector('#blog-helper-modal .modal'));
-        });
-    }
-    
-    if (videoModal) {
-        videoModal.addEventListener('click', (e) => {
-            handleOutsideClick(e, videoModal, document.querySelector('#video-modal .modal'));
-        });
-    }
-    
-    // Initialize the page
-    const init = () => {
-        // Render blog posts
-        renderHomepagePosts();
-        
-        // Set up intersection observer for animations
-        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
-    };
 
-    // Initialize the page
-    init();
-    
-    // Track page events for analytics
-    trackEvent('page', 'view', 'home');
+    // --- Performance Monitoring ---
+    if ('performance' in window && 'PerformanceObserver' in window) {
+        // Create performance observer
+        const perfObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            
+            entries.forEach(entry => {
+                // Log LCP, FID, CLS etc. for monitoring
+                console.log(`[Performance] ${entry.name}: ${entry.startTime.toFixed(2)}ms`);
+            });
+        });
+
+        // Observe paint timing
+        perfObserver.observe({ entryTypes: ['paint', 'largest-contentful-paint'] });
+    }
 });
-
-// Prevent layout shifts by setting image dimensions before load
-const setImageDimensions = () => {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        if (!img.getAttribute('width') && !img.getAttribute('height')) {
-            img.setAttribute('width', '100%');
-            img.setAttribute('height', 'auto');
-        }
-    });
-};
-
-// Service worker registration for improved performance and offline capabilities
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').then(registration => {
-            console.log('ServiceWorker registration successful');
-        }).catch(error => {
-            console.log('ServiceWorker registration failed:', error);
-        });
-    });
-}
-
-// Set image dimensions to prevent layout shifts
-setImageDimensions();
-
-// Analytics tracking (placeholder for actual implementation)
-const trackEvent = (category, action, label) => {
-    console.log(`Analytics Event: ${category} - ${action} - ${label}`);
-    // In production, implement proper analytics tracking
-};

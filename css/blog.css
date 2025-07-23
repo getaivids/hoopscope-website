@@ -1,0 +1,226 @@
+/* Blog-specific styles */
+
+/* Category buttons */
+.category-btn {
+    background-color: #18181b;
+    color: #94a3b8;
+    border: 1px solid #27272a;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.category-btn:hover {
+    background-color: #27272a;
+    color: #e2e8f0;
+}
+
+.category-btn.active {
+    background-color: #fb923c;
+    color: #ffffff;
+    border-color: #fb923c;
+}
+
+/* Article preview cards */
+.article-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-card .card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-card .card-meta {
+    margin-top: auto;
+}
+
+/* Article content typography */
+.article-content h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.article-content h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.article-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #f8fafc;
+}
+
+.article-content p {
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+}
+
+.article-content blockquote {
+    border-left: 4px solid #fb923c;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #cbd5e1;
+}
+
+.article-content ul, .article-content ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+.article-content a {
+    color: #fb923c;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.article-content a:hover {
+    color: #f97316;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.article-content code {
+    background-color: #1e293b;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+    font-size: 0.875rem;
+}
+
+.article-content pre {
+    background-color: #1e293b;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.article-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Author bio section */
+.author-bio {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #18181b;
+    border-radius: 0.5rem;
+}
+
+.author-bio img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.author-bio .author-info {
+    flex-grow: 1;
+}
+
+.author-bio h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #ffffff;
+}
+
+.author-bio p {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    margin-bottom: 0;
+}
+
+/* Social sharing */
+.social-share {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.social-share a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #27272a;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+
+.social-share a:hover {
+    background-color: #fb923c;
+}
+
+.social-share svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+}
+
+/* Related articles */
+.related-articles h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+/* Print styles */
+@media print {
+    .related-articles, .social-share, .author-bio {
+        display: none !important;
+    }
+    
+    .article-content {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+    
+    .article-content h1, .article-content h2, .article-content h3 {
+        page-break-after: avoid;
+    }
+    
+    .article-content p, .article-content li {
+        page-break-inside: avoid;
+    }
+    
+    .article-content a {
+        color: #000000;
+        text-decoration: underline;
+    }
+    
+    .article-content img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+}
