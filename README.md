@@ -1,88 +1,82 @@
-# Hoopscope
-
-![Hoopscope Logo](https://placehold.co/600x200/111111/fb923c?text=HOOPSCOPE)
-
-A data-driven basketball training, analytics, and community platform for serious players.
+# Hoopscope Website
 
 ## Overview
-
-Hoopscope is a comprehensive platform that helps basketball players at all levels track their performance, study professional players' techniques, and access personalized training resources. The platform combines cutting-edge analytics with AI-powered training recommendations to help players elevate their game.
+Hoopscope is a basketball analytics and training platform designed to help players track their performance, study professional techniques, and train with purpose. The platform combines data-driven insights with AI-powered training recommendations.
 
 ## Features
+- **Performance Analytics:** Track and analyze your basketball performance metrics
+- **AI Training Plans:** Generate personalized workout routines using AI
+- **Pro League Data:** Access and analyze professional basketball statistics
+- **Basketball Blog:** Content focused on basketball technique and strategy
+- **Smart Community:** Connect with other players and trainers
 
-- **Performance Analytics**: Track your stats, identify patterns, and improve faster
-- **Pro League Data**: Access NBA and EuroLeague statistics and insights
-- **AI-Powered Training Plans**: Get personalized workout routines based on your goals
-- **Smart Community**: Connect with players, trainers, and basketball enthusiasts
-- **Data-Driven Content**: Read insights on the science of basketball performance
+## Technical Implementation
 
-## Technology Stack
+### Frontend
+- HTML5, CSS3 with TailwindCSS
+- Vanilla JavaScript with modern ES6+ features
+- Responsive design optimized for all device sizes
+- Accessible following WCAG guidelines
 
-- HTML5/CSS3 with Tailwind CSS for styling
-- Vanilla JavaScript for functionality
-- OpenAI API for AI-powered features
-- Responsive design for all device sizes
+### AI Integration
+- OpenAI API integration for personalized training plans
+- Content analysis for blog article summaries
+- Interactive Q&A for blog content
 
-## Getting Started
+### Performance Optimizations
+- Lazy loading for images and non-critical resources
+- Service worker for offline capabilities and caching
+- Code splitting for optimal loading times
+- Critical CSS inlined for faster initial render
 
-### Prerequisites
+### Accessibility Features
+- Semantic HTML structure
+- ARIA attributes where appropriate
+- Keyboard navigation support
+- Focus management for modals and interactive elements
 
-- Node.js (for local development)
-- OpenAI API key (for AI features)
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/hoopscope.git
-   cd hoopscope
-   ```
-
-2. Set up environment variables:
-   - Create a `.env` file in the root directory
-   - Add your OpenAI API key: `OPENAI_API_KEY=your_api_key_here`
-
-3. Open `index.html` in your browser or set up a local server:
-   ```bash
-   npx serve
-   ```
+## File Structure
+- `index.html` - Main website file
+- `js/api.js` - API integration module
+- `js/main.js` - Main JavaScript functionality
+- `service-worker.js` - Service worker for caching and offline support
+- `blog.html` - Blog page
 
 ## Development
 
-### Project Structure
+### Setting up the environment
+1. Clone the repository
+2. Set up environment variables (for API keys)
+3. Open the HTML file in a browser for local development
+
+### API Keys
+API keys should be stored in environment variables and never committed to the repository. In production, use a secure method for managing environment variables.
 
 ```
-hoopscope/
-├── index.html           # Main landing page
-├── hoopscope-blog.html  # Blog listing page
-├── assets/              # Static assets
-│   ├── css/             # CSS files
-│   ├── js/              # JavaScript files
-│   └── img/             # Images
-└── docs/                # Documentation
+OPENAI_API_KEY=your_api_key_here
 ```
 
-### Key Components
+## Deployment
+The website is designed to be deployed to any static hosting service. For the best performance:
 
-- **AI Training Plan Generator**: Uses OpenAI API to create personalized basketball workouts
-- **Blog Helper**: AI-powered article summarization and Q&A functionality
-- **Responsive Design**: Tailwind CSS implementation for all screen sizes
+1. Configure proper caching headers for static assets
+2. Enable HTTP/2 or HTTP/3 on your server
+3. Use a CDN for global content delivery
+4. Enable HTTPS for secure API communication
 
-## Contributing
+## Future Enhancements
+- Implement user authentication system
+- Add advanced analytics dashboard
+- Develop mobile app companion
+- Integrate with fitness tracking devices
+- Expand AI capabilities for game analysis
 
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add some amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+## Browser Compatibility
+The website is compatible with:
+- Chrome (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Edge (latest 2 versions)
 
 ## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Basketball analytics community
-- OpenAI for providing the API
-- Tailwind CSS for the styling framework
-- Unsplash for the stock images used in the demo
+Copyright © 2025 Hoopscope Technologies Inc. All Rights Reserved.
