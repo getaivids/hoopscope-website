@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hoopscope Blog: Expert basketball analysis, training tips, and insights for players looking to improve their game.">
+    <meta name="keywords" content="basketball blog, training tips, NBA analysis, basketball analytics, player improvement">
+    <meta name="author" content="Hoopscope Technologies">
+    
+    <title>Hoopscope Blog | Basketball Analytics & Training Insights</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body class="bg-black text-slate-200">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-30 p-4 md:px-6 md:py-4 bg-black/50 backdrop-blur-lg border-b border-zinc-800/50 site-header">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-2" aria-label="Hoopscope Homepage">
+                <span class="bg-orange-500 text-white font-bold text-lg w-8 h-8 flex items-center justify-center rounded-lg">H</span>
+                <span class="text-xl font-bold text-white">Hoopscope</span>
+            </a>
+            
+            <div id="mobile-menu" class="hidden md:flex items-center gap-6">
+                <a href="../index.html#features" class="text-slate-300 hover:text-white transition-colors">Features</a>
+                <a href="../index.html#why-hoopscope" class="text-slate-300 hover:text-white transition-colors">Why Hoopscope</a>
+                <a href="index.html" class="text-white font-semibold transition-colors">Blog</a>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <a href="#" class="text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors">Sign In</a>
+                <a href="../index.html#cta" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-colors">Get Early Access</a>
+            </div>
+            
+            <button id="menu-toggle" class="md:hidden text-white p-1" aria-expanded="false" aria-label="Toggle navigation menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Blog Header -->
+        <section class="pt-40 pb-20 bg-gradient-to-b from-zinc-900 to-black">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">The Hoopscope Blog</h1>
+                    <p class="text-xl text-slate-300">Data-driven insights, training wisdom, and basketball expertise to elevate your game.</p>
+                </div>
+                
+                <!-- Categories -->
+                <div class="flex flex-wrap justify-center gap-3 mt-12">
+                    <button class="bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium category-filter active" data-category="all">All Posts</button>
+                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-full text-sm font-medium category-filter" data-category="Analytics">Analytics</button>
+                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-full text-sm font-medium category-filter" data-category="Pro Insights">Pro Insights</button>
+                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-full text-sm font-medium category-filter" data-category="Training">Training</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Post -->
+        <section class="py-12 md:py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-white">Featured Post</h2>
+                
+                <div id="featured-post" class="card-bg rounded-2xl overflow-hidden">
+                    <div class="grid md:grid-cols-2 gap-0">
+                        <div class="featured-image-container relative h-64 md:h-full min-h-[300px]">
+                            <img 
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" 
+                                data-src="../assets/images/blog/ball-handling.jpg" 
+                                alt="The Biomechanics of an Unshakeable Handle" 
+                                class="absolute inset-0 w-full h-full object-cover lazy-image"
+                                aria-label="Featured image for article: The Biomechanics of an Unshakeable Handle">
+                        </div>
+                        <div class="p-8 flex flex-col">
+                            <span class="text-orange-400 font-semibold text-sm">Analytics</span>
+                            <h3 class="text-2xl font-bold text-white my-3">
+                                <a href="biomechanics-unshakeable-handle.html" class="hover:text-orange-400 transition-colors">
+                                    The Biomechanics of an Unshakeable Handle
+                                </a>
+                            </h3>
+                            <p class="text-slate-400 mb-6">
+                                Following our deep dive into the jump shot, we're back in the lab to unravel the secrets of elite ball handling. Using motion capture and newly developed pressure-sensing basketballs...
+                            </p>
+                            <div class="flex items-center justify-between text-sm text-slate-500 mt-auto">
+                                <span>By Dr. Evelyn Reed &bull; September 18, 2025</span>
+                                <a href="biomechanics-unshakeable-handle.html" class="text-orange-400 font-semibold flex items-center gap-2 hover:text-orange-300 transition-colors">
+                                    Read Article
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- All Posts -->
+        <section class="py-12 md:py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-white">Latest Articles</h2>
+                
+                <div id="blog-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog posts will be dynamically inserted here -->
+                    <!-- Loading placeholders -->
+                    <div class="card-bg rounded-2xl overflow-hidden flex flex-col min-h-[300px] animate-pulse">
+                        <div class="w-full h-48 bg-zinc-800"></div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="h-3 bg-zinc-700 rounded w-1/4 mb-2"></div>
+                            <div class="h-5 bg-zinc-700 rounded w-3/4 mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-full mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-5/6 mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-3/4 mb-2"></div>
+                            <div class="h-3 bg-zinc-700 rounded w-2/4 mt-auto"></div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-2xl overflow-hidden flex flex-col min-h-[300px] animate-pulse">
+                        <div class="w-full h-48 bg-zinc-800"></div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="h-3 bg-zinc-700 rounded w-1/4 mb-2"></div>
+                            <div class="h-5 bg-zinc-700 rounded w-3/4 mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-full mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-5/6 mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-3/4 mb-2"></div>
+                            <div class="h-3 bg-zinc-700 rounded w-2/4 mt-auto"></div>
+                        </div>
+                    </div>
+                    <div class="card-bg rounded-2xl overflow-hidden flex flex-col min-h-[300px] animate-pulse">
+                        <div class="w-full h-48 bg-zinc-800"></div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="h-3 bg-zinc-700 rounded w-1/4 mb-2"></div>
+                            <div class="h-5 bg-zinc-700 rounded w-3/4 mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-full mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-5/6 mb-2"></div>
+                            <div class="h-4 bg-zinc-700 rounded w-3/4 mb-2"></div>
+                            <div class="h-3 bg-zinc-700 rounded w-2/4 mt-auto"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="text-center mt-12">
+                    <button id="load-more-btn" class="bg-zinc-800 hover:bg-zinc-700 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg">
+                        Load More Articles
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Newsletter -->
+        <section class="py-16 md:py-24 bg-gradient-to-b from-black to-zinc-900">
+            <div class="container mx-auto px-4">
+                <div class="card-bg rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+                    <div class="text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Get the Basketball Edge</h2>
+                        <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
+                            Subscribe to our newsletter for exclusive training tips, analytics insights, and basketball wisdom delivered straight to your inbox.
+                        </p>
+                        
+                        <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+                            <label for="newsletter-email" class="sr-only">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="newsletter-email" 
+                                placeholder="Your email address" 
+                                class="flex-grow p-3 bg-zinc-800 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white">
+                            <button type="submit" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-3 rounded-lg font-semibold transition-colors">
+                                Subscribe
+                            </button>
+                        </form>
+                        
+                        <p class="text-xs text-slate-500 mt-4">
+                            We respect your privacy. Unsubscribe at any time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900/50 py-12 border-t border-zinc-800">
+        <div class="container mx-auto px-4 text-slate-400">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-8">
+                <div class="col-span-2 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-orange-400 mb-2">HOOPSCOPE</h3>
+                    <p class="text-sm">The ultimate platform for basketball analytics, training, and community.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-3">Features</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="../index.html#features" class="hover:text-white transition-colors">Player Tools</a></li>
+                        <li><a href="../index.html#features" class="hover:text-white transition-colors">Pro League Data</a></li>
+                        <li><a href="../index.html#features" class="hover:text-white transition-colors">Smart Training</a></li>
+                        <li><a href="../index.html#features" class="hover:text-white transition-colors">Deep Content</a></li>
+                        <li><a href="../index.html#features" class="hover:text-white transition-colors">Community</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-3">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API Docs</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Training Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-3">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-3">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" aria-label="Twitter" class="text-slate-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.223.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="text-slate-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.802c-3.552 0-3.92.016-5.281.076-2.827.129-4.005 1.308-4.134 4.134-.06 1.36-.076 1.729-.076 5.281s.016 3.92.076 5.281c.129 2.827 1.308 4.005 4.134 4.134 1.36.06 1.729.076 5.281.076s3.92-.016 5.281-.076c2.827-.129 4.005-1.308 4.134-4.134.06-1.36.076-1.729.076-5.281s-.016-3.92-.076-5.281c-.129-2.827-1.308-4.005-4.134-4.134C15.92 3.979 15.552 3.965 12 3.965zM12 6.837a5.163 5.163 0 100 10.326 5.163 5.163 0 000-10.326zm0 8.522a3.359 3.359 0 110-6.718 3.359 3.359 0 010 6.718zM17.636 6.113a1.227 1.227 0 100 2.454 1.227 1.227 0 000-2.454z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-zinc-800 pt-8 mt-8 text-center text-sm">
+                <p>&copy; 2025 Hoopscope Technologies Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Blog Helper Modal -->
+    <div id="blog-helper-modal" class="fixed inset-0 modal-bg flex items-center justify-center p-4 z-50 hidden" role="dialog" aria-labelledby="blog-helper-title" aria-modal="true">
+        <div class="modal card-bg rounded-2xl w-full max-w-2xl relative max-h-[90vh] flex flex-col">
+            <button id="close-blog-helper-modal-btn" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="p-8 overflow-y-auto">
+                <h2 id="blog-helper-title" class="text-2xl font-bold text-white mb-4">Ask AI about this article ✨</h2>
+                <div id="blog-helper-output" class="bg-zinc-900 p-4 rounded-lg min-h-[100px] text-slate-300">
+                    <div class="flex justify-center items-center h-full">
+                        <p class="text-slate-500">Ask a question about the article...</p>
+                    </div>
+                </div>
+                <div class="mt-4 flex gap-2">
+                    <label for="blog-helper-prompt" class="sr-only">Ask a follow-up question</label>
+                    <input 
+                        type="text" 
+                        id="blog-helper-prompt" 
+                        placeholder="Ask a follow-up question..." 
+                        class="w-full p-3 bg-zinc-800 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <button 
+                        id="blog-helper-ask-btn" 
+                        class="bg-orange-600 hover:bg-orange-700 text-white px-5 rounded-lg font-semibold transition-colors flex items-center justify-center"
+                        aria-label="Ask question">
+                        Ask
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog JS -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const blogPosts = [
+                {
+                    title: "The Biomechanics of an Unshakeable Handle",
+                    author: "Dr. Evelyn Reed",
+                    date: "September 18, 2025",
+                    category: "Analytics",
+                    image: "../assets/images/blog/ball-handling.jpg",
+                    slug: "biomechanics-unshakeable-handle",
+                    excerpt: "Following our deep dive into the jump shot, we're back in the lab to unravel the secrets of elite ball handling. Using motion capture and newly developed pressure-sensing basketballs...",
+                    featured: true
+                },
+                {
+                    title: "Beyond the Arc: How Shot-Selection Defines Modern Offenses",
+                    author: "Alex Rivera",
+                    date: "July 5, 2025",
+                    category: "Analytics",
+                    image: "../assets/images/blog/three-point-shooting.jpg",
+                    slug: "beyond-the-arc-shot-selection",
+                    excerpt: "The three-point line has fundamentally revolutionized basketball. We dive into the data to show how spacing and shot selection have become the keys to unlocking a high-powered offense...",
+                    featured: false
+                },
+                {
+                    title: "A Day in the Life: Off-Season Training with a Pro",
+                    author: "Jasmine Chen",
+                    date: "June 28, 2025",
+                    category: "Pro Insights",
+                    image: "../assets/images/blog/pro-training.jpg",
+                    slug: "day-in-life-offseason-training",
+                    excerpt: "What does it really take to compete at the highest level? We follow a professional player through their rigorous off-season regimen, from the weight room to the court...",
+                    featured: false
+                },
+                {
+                    title: "The Mental Game: Developing Basketball IQ",
+                    author: "Marcus Johnson",
+                    date: "June 15, 2025",
+                    category: "Training",
+                    image: "../assets/images/blog/basketball-iq.jpg",
+                    slug: "mental-game-basketball-iq",
+                    excerpt: "Physical skills are only half the battle. We explore how elite players develop their basketball IQ and decision-making abilities through film study, situational training, and mental exercises...",
+                    featured: false
+                },
+                {
+                    title: "Recovery Science: Optimize Your Body Between Games",
+                    author: "Dr. Sarah Williams",
+                    date: "May 30, 2025",
+                    category: "Training",
+                    image: "../assets/images/blog/recovery.jpg",
+                    slug: "recovery-science-between-games",
+                    excerpt: "Modern recovery methods have revolutionized how players prepare their bodies between intense training sessions and games. Learn the science-backed techniques pros use to stay fresh...",
+                    featured: false
+                },
+                {
+                    title: "The Evolution of NBA Defenses: From Man-to-Man to Zone Switching",
+                    author: "Coach Tom Reynolds",
+                    date: "May 12, 2025",
+                    category: "Analytics",
+                    image: "../assets/images/blog/nba-defense.jpg",
+                    slug: "evolution-nba-defenses",
+                    excerpt: "NBA defensive schemes have evolved dramatically in the last decade. We analyze the data behind these changes and show how teams are adapting to counter modern offenses...",
+                    featured: false
+                }
+            ];
+            
+            const blogGrid = document.getElementById('blog-grid');
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const categoryFilters = document.querySelectorAll('.category-filter');
+            
+            let currentCategory = 'all';
+            let visiblePosts = 3; // Initial number of posts to show
+            
+            // Initialize the blog grid
+            renderBlogPosts();
+            
+            // Filter posts by category
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    // Update active class
+                    categoryFilters.forEach(btn => btn.classList.remove('active', 'bg-orange-600'));
+                    categoryFilters.forEach(btn => btn.classList.add('bg-zinc-800'));
+                    filter.classList.add('active', 'bg-orange-600');
+                    filter.classList.remove('bg-zinc-800');
+                    
+                    // Apply filter
+                    currentCategory = filter.dataset.category;
+                    visiblePosts = 3; // Reset visible posts count
+                    renderBlogPosts();
+                });
+            });
+            
+            // Load more posts
+            loadMoreBtn.addEventListener('click', () => {
+                visiblePosts += 3;
+                renderBlogPosts();
+            });
+            
+            // Render blog posts based on current filter and visible count
+            function renderBlogPosts() {
+                // Clear the grid first
+                blogGrid.innerHTML = '';
+                
+                // Filter posts
+                const filteredPosts = currentCategory === 'all' 
+                    ? blogPosts.filter(post => !post.featured) // Exclude featured post for 'all' category
+                    : blogPosts.filter(post => post.category === currentCategory && !post.featured);
+                
+                // Limit to visible count
+                const postsToShow = filteredPosts.slice(0, visiblePosts);
+                
+                // Render posts
+                postsToShow.forEach((post, index) => {
+                    const postElement = createPostElement(post, index);
+                    blogGrid.appendChild(postElement);
+                });
+                
+                // Toggle load more button visibility
+                loadMoreBtn.style.display = postsToShow.length < filteredPosts.length ? 'inline-block' : 'none';
+                
+                // Initialize lazy loading for new images
+                initLazyLoading();
+            }
+            
+            // Create a blog post element
+            function createPostElement(post, index) {
+                const postEl = document.createElement('div');
+                postEl.className = 'card-bg rounded-2xl overflow-hidden flex flex-col scroll-animate';
+                postEl.dataset.delay = (index + 1) * 0.1;
+                
+                // Create fallback for images
+                const imagePath = post.image || '../assets/images/placeholder.jpg';
+                
+                postEl.innerHTML = `
+                    <a href="${post.slug}.html" class="block hover:opacity-80 transition-opacity">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" 
+                             data-src="${imagePath}" 
+                             alt="${post.title}" 
+                             class="w-full h-48 object-cover lazy-image"
+                             aria-label="Featured image for article: ${post.title}">
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-orange-400 font-semibold text-sm">${post.category}</span>
+                        <h3 class="text-xl font-bold text-white my-2">
+                            <a href="${post.slug}.html" class="hover:text-orange-400 transition-colors">${post.title}</a>
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4 flex-grow">${post.excerpt}</p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 mt-auto">
+                            <span>By ${post.author} &bull; ${post.date}</span>
+                            <button data-index="${index}" 
+                                    class="ai-blog-btn text-orange-400 font-semibold flex items-center gap-1 hover:text-orange-300"
+                                    aria-label="Ask AI about this article">
+                                ✨ Ask AI
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                return postEl;
+            }
+        });
+    </script>
+</body>
+</html>
