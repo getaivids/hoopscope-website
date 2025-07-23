@@ -2,16 +2,30 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hoopscope: Track your basketball game, study the pros, and train with data-driven insights and AI-powered tools.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Hoopscope: Data-driven basketball training, analytics, and community. Track your game, study the pros, and train with purpose.">
+    <meta name="theme-color" content="#000000">
     <title>Hoopscope: Data-Driven Basketball Training</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Preload key resources -->
-    <link rel="preload" href="https://images.unsplash.com/photo-1515523110800-9415d13b84a8?q=80&w=2070&auto=format&fit=crop" as="image">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap">
+    
+    <!-- Preload critical styles -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Tailwind CSS (consider using a local, optimized build in production) -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
 <body class="bg-black text-slate-200">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-orange-600 focus:text-white focus:z-50">Skip to main content</a>
+
     <!-- Header -->
     <header class="fixed top-0 left-0 w-full z-30 p-4 md:px-6 md:py-4 bg-black/50 backdrop-blur-lg border-b border-zinc-800/50">
         <nav class="container mx-auto flex justify-between items-center">
@@ -19,42 +33,52 @@
                 <span class="bg-orange-500 text-white font-bold text-lg w-8 h-8 flex items-center justify-center rounded-lg">H</span>
                 <span class="text-xl font-bold text-white">Hoopscope</span>
             </a>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden flex items-center text-slate-300 hover:text-white" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            
+            <!-- Desktop navigation -->
             <div class="hidden md:flex items-center gap-6">
                 <a href="#features" class="text-slate-300 hover:text-white transition-colors">Features</a>
                 <a href="#why-hoopscope" class="text-slate-300 hover:text-white transition-colors">Why Hoopscope</a>
-                <a href="blog.html" class="text-slate-300 hover:text-white transition-colors">Blog</a>
+                <a href="hoopscope-blog.html" class="text-slate-300 hover:text-white transition-colors">Blog</a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden flex items-center" aria-label="Toggle mobile menu">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-            <div class="flex items-center gap-2">
+            
+            <div class="hidden md:flex items-center gap-2">
                 <a href="#" class="text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors">Sign In</a>
                 <a href="#cta" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-colors">Get Early Access</a>
             </div>
         </nav>
-        <!-- Mobile menu (hidden by default) -->
-        <div id="mobile-menu" class="md:hidden bg-black/95 backdrop-blur-lg p-4 hidden animate-fade-in">
-            <div class="flex flex-col space-y-4">
+        
+        <!-- Mobile navigation menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute left-0 right-0 top-full bg-black/90 backdrop-blur-lg border-b border-zinc-800/50 p-4">
+            <nav class="flex flex-col space-y-4">
                 <a href="#features" class="text-slate-300 hover:text-white transition-colors py-2">Features</a>
                 <a href="#why-hoopscope" class="text-slate-300 hover:text-white transition-colors py-2">Why Hoopscope</a>
-                <a href="blog.html" class="text-slate-300 hover:text-white transition-colors py-2">Blog</a>
-            </div>
+                <a href="hoopscope-blog.html" class="text-slate-300 hover:text-white transition-colors py-2">Blog</a>
+                <div class="flex flex-col gap-2 pt-4 border-t border-zinc-800">
+                    <a href="#" class="text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors text-center">Sign In</a>
+                    <a href="#cta" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-colors text-center">Get Early Access</a>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- Hero Section -->
-        <section id="hero" class="pt-40 pb-20 md:pt-56 md:pb-32 text-center hero-bg" role="banner">
+        <section id="hero" class="pt-40 pb-20 md:pt-56 md:pb-32 text-center hero-bg" aria-labelledby="hero-heading">
             <div class="container mx-auto px-4">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-4 scroll-animate">Know the Game. <br> Own Yours.</h1>
+                <h1 id="hero-heading" class="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-4 scroll-animate">Know the Game. <br> Own Yours.</h1>
                 <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mt-6 scroll-animate" style="animation-delay: .1s;">
                     Track your game. Study the pros. Train with purpose.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10 scroll-animate" style="animation-delay: .2s;">
-                    <a href="#cta" class="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg">Get Early Access</a>
-                    <a href="#" class="w-full sm:w-auto bg-zinc-700/50 hover:bg-zinc-600/50 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg backdrop-blur-sm flex items-center justify-center gap-2">
+                    <a href="#cta" class="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black">Get Early Access</a>
+                    <a href="#" class="w-full sm:w-auto bg-zinc-700/50 hover:bg-zinc-600/50 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg backdrop-blur-sm flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-black">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
                         Watch Demo
                     </a>
@@ -72,25 +96,25 @@
         <!-- Mini-Features Section -->
         <section id="features" class="py-24 md:py-32 gradient-bg-dark" aria-labelledby="features-heading">
             <div class="container mx-auto px-4">
-                <h2 id="features-heading" class="sr-only">Features</h2>
+                <h2 id="features-heading" class="sr-only">Key Features</h2>
                 <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     <div class="card-bg p-8 rounded-2xl flex flex-col items-center text-center scroll-animate" style="animation-delay: .2s;">
-                        <div class="icon-bg p-3 rounded-full mb-4">
-                            <svg class="w-8 h-8 text-orange-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+                        <div class="icon-bg p-3 rounded-full mb-4" aria-hidden="true">
+                            <svg class="w-8 h-8 text-orange-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-white">Performance Analytics</h3>
                         <p class="text-slate-400 text-base">Track every stat, spot patterns, improve faster.</p>
                     </div>
                     <div class="card-bg p-8 rounded-2xl flex flex-col items-center text-center scroll-animate" style="animation-delay: .3s;">
-                        <div class="icon-bg p-3 rounded-full mb-4">
-                            <svg class="w-8 h-8 text-orange-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A11.953 11.953 0 0112 16.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253M3.284 14.253A11.953 11.953 0 0112 16.5c2.998 0 5.74-1.1 7.843-2.918m-15.686 0A8.959 8.959 0 003 12c0-.778.099-1.533.284-2.253m0 0a11.953 11.953 0 007.843 2.918" /></svg>
+                        <div class="icon-bg p-3 rounded-full mb-4" aria-hidden="true">
+                            <svg class="w-8 h-8 text-orange-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A11.953 11.953 0 0112 16.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253M3.284 14.253A11.953 11.953 0 0112 16.5c2.998 0 5.74-1.1 7.843-2.918m-15.686 0A8.959 8.959 0 003 12c0-.778.099-1.533.284-2.253m0 0a11.953 11.953 0 007.843 2.918" /></svg>
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-white">Pro League Data</h3>
                         <p class="text-slate-400 text-base">NBA, EuroLeague stats and insights at your fingertips.</p>
                     </div>
                     <div class="card-bg p-8 rounded-2xl flex flex-col items-center text-center scroll-animate" style="animation-delay: .4s;">
-                        <div class="icon-bg p-3 rounded-full mb-4">
-                            <svg class="w-8 h-8 text-orange-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962a3.75 3.75 0 015.908 0M18 18.72a9.094 9.094 0 01-7.5 0-49.92 49.92 0 01-3.741-.479m0 0a3 3 0 01-4.682-2.72m-7.5-2.962a3.75 3.75 0 005.908 0M12 4.5v.01m0 3.182v.01M12 12v.01m0 3.182v.01M12 19.5v.01M6.075 12.075a3.75 3.75 0 010-5.304m11.85 5.304a3.75 3.75 0 000-5.304M6.075 12.075a3.75 3.75 0 000 5.304m11.85-5.304a3.75 3.75 0 010 5.304" /></svg>
+                        <div class="icon-bg p-3 rounded-full mb-4" aria-hidden="true">
+                            <svg class="w-8 h-8 text-orange-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962a3.75 3.75 0 015.908 0M18 18.72a9.094 9.094 0 01-7.5 0-49.92 49.92 0 01-3.741-.479m0 0a3 3 0 01-4.682-2.72m-7.5-2.962a3.75 3.75 0 005.908 0M12 4.5v.01m0 3.182v.01M12 12v.01m0 3.182v.01M12 19.5v.01M6.075 12.075a3.75 3.75 0 010-5.304m11.85 5.304a3.75 3.75 0 000-5.304M6.075 12.075a3.75 3.75 0 000 5.304m11.85-5.304a3.75 3.75 0 010 5.304" /></svg>
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-white">Smart Community</h3>
                         <p class="text-slate-400 text-base">Connect with players, trainers, and basketball minds.</p>
@@ -134,12 +158,13 @@
                     <p class="text-lg text-slate-400 mb-8 scroll-animate" style="animation-delay: .1s;">Describe your goals and let our AI generate a personalized workout plan to help you get there.</p>
                 </div>
                 <div class="max-w-2xl mx-auto card-bg p-8 rounded-2xl scroll-animate" style="animation-delay: .2s;">
-                    <textarea id="workout-prompt" class="w-full p-4 bg-zinc-900 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500" rows="4" placeholder="e.g., 'I want to improve my ball handling and finishing at the rim. I have 60 minutes and access to cones and a hoop.'" aria-label="Enter your training goals"></textarea>
-                    <button id="generate-plan-btn" class="mt-4 w-full bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg flex items-center justify-center gap-2" aria-label="Generate workout plan">
+                    <label for="workout-prompt" class="sr-only">Enter your training goals</label>
+                    <textarea id="workout-prompt" class="w-full p-4 bg-zinc-900 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500" rows="4" placeholder="e.g., 'I want to improve my ball handling and finishing at the rim. I have 60 minutes and access to cones and a hoop.'"></textarea>
+                    <div id="workout-error" class="text-red-500 text-sm mt-2 hidden"></div>
+                    <button id="generate-plan-btn" class="mt-4 w-full bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black">
                         <span id="generate-btn-text">Generate Plan</span>
                         <div id="generate-loader" class="w-5 h-5 rounded-full loader hidden" aria-hidden="true"></div>
                     </button>
-                    <p class="text-xs text-slate-500 mt-2 text-center">Powered by OpenAI</p>
                 </div>
             </div>
         </section>
@@ -150,9 +175,10 @@
                 <h2 id="blog-heading" class="text-4xl md:text-5xl font-bold text-center mb-12 scroll-animate">From the Blog</h2>
                 <div id="blog-grid-homepage" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Blog posts will be dynamically inserted here -->
+                    <p id="blog-loading" class="col-span-full text-center text-slate-400">Loading latest articles...</p>
                 </div>
                 <div class="text-center mt-12">
-                    <a href="blog.html" class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg">View All Posts</a>
+                    <a href="hoopscope-blog.html" class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black">View All Posts</a>
                 </div>
             </div>
         </section>
@@ -179,13 +205,13 @@
         </section>
 
         <!-- CTA Section -->
-        <section id="cta" class="py-24 md:py-32" aria-labelledby="cta-heading">
+        <section id="cta" class="py-24 md:py-32">
             <div class="container mx-auto px-4">
                 <div class="cta-gradient rounded-3xl p-10 md:p-16 text-center scroll-animate">
-                    <h2 id="cta-heading" class="text-4xl md:text-5xl font-bold text-white mb-4">Ready to elevate your game?</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Ready to elevate your game?</h2>
                     <p class="text-lg text-zinc-100 mb-8 max-w-2xl mx-auto">Join thousands of players who are already using data and community to reach their basketball goals.</p>
                     <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                        <a href="#" class="w-full sm:w-auto bg-white hover:bg-zinc-200 text-orange-600 px-8 py-4 rounded-full font-bold transition-colors text-lg inline-block">Get Early Access</a>
+                        <a href="#" class="w-full sm:w-auto bg-white hover:bg-zinc-200 text-orange-600 px-8 py-4 rounded-full font-bold transition-colors text-lg inline-block focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-orange-600">Get Early Access</a>
                     </div>
                 </div>
             </div>
@@ -193,7 +219,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-zinc-900/50 py-12 border-t border-zinc-800" role="contentinfo">
+    <footer class="bg-zinc-900/50 py-12 border-t border-zinc-800">
         <div class="container mx-auto px-4 text-slate-400">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-8">
                 <div class="col-span-2 lg:col-span-2">
@@ -203,38 +229,38 @@
                 <div>
                     <h4 class="font-semibold text-white mb-3">Features</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Player Tools</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pro League Data</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Smart Training</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Deep Content</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Player Tools</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Pro League Data</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Smart Training</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Deep Content</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Community</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold text-white mb-3">Resources</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">API Docs</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Training Guide</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">API Docs</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Training Guide</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold text-white mb-3">Legal</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Terms</a></li>
+                        <li><a href="#" class="hover:text-white focus:outline-none focus:text-white">Security</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold text-white mb-3">Follow Us</h4>
                     <div class="flex gap-4">
-                        <a href="#" aria-label="Twitter" class="text-slate-400 hover:text-white transition-colors">
+                        <a href="#" aria-label="Twitter" class="hover:text-white focus:outline-none focus:text-white">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.223.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" /></svg>
                         </a>
-                        <a href="#" aria-label="Instagram" class="text-slate-400 hover:text-white transition-colors">
+                        <a href="#" aria-label="Instagram" class="hover:text-white focus:outline-none focus:text-white">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.802c-3.552 0-3.92.016-5.281.076-2.827.129-4.005 1.308-4.134 4.134-.06 1.36-.076 1.729-.076 5.281s.016 3.92.076 5.281c.129 2.827 1.308 4.005 4.134 4.134 1.36.06 1.729.076 5.281.076s3.92-.016 5.281-.076c2.827-.129 4.005-1.308 4.134-4.134.06-1.36.076-1.729.076-5.281s-.016-3.92-.076-5.281c-.129-2.827-1.308-4.005-4.134-4.134C15.92 3.979 15.552 3.965 12 3.965zM12 6.837a5.163 5.163 0 100 10.326 5.163 5.163 0 000-10.326zm0 8.522a3.359 3.359 0 110-6.718 3.359 3.359 0 010 6.718zM17.636 6.113a1.227 1.227 0 100 2.454 1.227 1.227 0 000-2.454z" /></svg>
                         </a>
                     </div>
@@ -249,11 +275,20 @@
     <!-- AI Workout Plan Modal -->
     <div id="workout-plan-modal" class="fixed inset-0 modal-bg flex items-center justify-center p-4 z-50 hidden" role="dialog" aria-labelledby="workout-plan-title" aria-hidden="true">
         <div class="modal card-bg rounded-2xl w-full max-w-2xl relative max-h-[90vh] flex flex-col">
-            <button id="close-workout-modal-btn" class="absolute top-4 right-4 text-slate-500 hover:text-white" aria-label="Close modal">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            <button id="close-workout-modal-btn" class="absolute top-4 right-4 text-slate-500 hover:text-white focus:outline-none focus:text-white" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <div id="workout-plan-content" class="p-8 overflow-y-auto">
-                <!-- Generated content will go here -->
+                <h2 id="workout-plan-title" class="text-2xl font-bold text-white mb-4">Your Personalized Workout Plan</h2>
+                <div id="workout-plan-loading" class="flex justify-center py-8">
+                    <div class="w-8 h-8 rounded-full loader"></div>
+                </div>
+                <div id="workout-plan-data" class="hidden">
+                    <!-- Generated content will go here -->
+                </div>
+                <div id="workout-plan-error" class="hidden text-red-500 text-center py-8">
+                    <p>Sorry, we couldn't generate your workout plan. Please try again.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -261,22 +296,26 @@
     <!-- AI Blog Helper Modal -->
     <div id="blog-helper-modal" class="fixed inset-0 modal-bg flex items-center justify-center p-4 z-50 hidden" role="dialog" aria-labelledby="blog-helper-title" aria-hidden="true">
         <div class="modal card-bg rounded-2xl w-full max-w-2xl relative max-h-[90vh] flex flex-col">
-            <button id="close-blog-helper-modal-btn" class="absolute top-4 right-4 text-slate-500 hover:text-white" aria-label="Close modal">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            <button id="close-blog-helper-modal-btn" class="absolute top-4 right-4 text-slate-500 hover:text-white focus:outline-none focus:text-white" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <div class="p-8 overflow-y-auto">
                 <h2 id="blog-helper-title" class="text-2xl font-bold text-white mb-4">Ask AI about this article ✨</h2>
-                <div id="blog-helper-output" class="bg-zinc-900 p-4 rounded-lg min-h-[100px] text-slate-300" aria-live="polite"></div>
+                <div id="blog-helper-output" class="bg-zinc-900 p-4 rounded-lg min-h-[100px] text-slate-300">
+                    <div id="blog-helper-loading" class="flex justify-center py-4">
+                        <div class="w-5 h-5 rounded-full loader"></div>
+                    </div>
+                </div>
                 <div class="mt-4 flex gap-2">
-                    <input type="text" id="blog-helper-prompt" placeholder="Ask a follow-up question..." class="w-full p-3 bg-zinc-800 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500" aria-label="Ask a question about the article">
-                    <button id="blog-helper-ask-btn" class="bg-orange-600 hover:bg-orange-700 text-white px-5 rounded-lg font-semibold transition-colors flex items-center justify-center" aria-label="Submit question">Ask</button>
+                    <label for="blog-helper-prompt" class="sr-only">Ask a follow-up question</label>
+                    <input type="text" id="blog-helper-prompt" placeholder="Ask a follow-up question..." class="w-full p-3 bg-zinc-800 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <button id="blog-helper-ask-btn" class="bg-orange-600 hover:bg-orange-700 text-white px-5 rounded-lg font-semibold transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-zinc-900">Ask</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="js/main.js" defer></script>
-    <script src="js/api.js" defer></script>
+    <!-- External JS file (main.js) -->
+    <script src="main.js" defer></script>
 </body>
 </html>

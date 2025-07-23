@@ -1,86 +1,113 @@
 # Hoopscope Website
 
-A data-driven basketball training website with analytics and AI-powered features.
+A data-driven basketball analytics, training, and community platform.
 
 ## Overview
 
-Hoopscope is a web platform that combines basketball analytics, training resources, and AI-powered features to help players improve their game. The site includes:
-
-- Performance analytics tools
-- Pro league data integration
-- AI-powered training plan generator
-- Basketball blog with expert content
-- Community features
+Hoopscope is a web platform designed to help basketball players at all levels improve their game through data-driven insights, professional training methods, and community engagement. The platform combines analytics, training tools, and content to provide a comprehensive basketball improvement experience.
 
 ## Features
 
-### AI Training Plan Generator
+- **Performance Analytics**: Track stats, identify patterns, and measure improvement
+- **Pro League Data**: Access insights from NBA and EuroLeague
+- **AI-Powered Training**: Generate personalized workout plans
+- **Blog & Content**: In-depth articles on basketball technique and strategy
+- **Smart Community**: Connect with other players and coaches
 
-Users can describe their training goals, available equipment, and time constraints, and the AI will generate a customized workout plan.
+## Technical Details
 
-### Blog with AI Assistant
+### Tech Stack
 
-Read articles about basketball techniques, analytics, and pro insights. Each article includes an AI assistant that can answer questions about the content.
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **CSS Framework**: Tailwind CSS
+- **API Integration**: OpenAI API for AI features
+- **Performance**: Lazy loading, optimized assets, responsive design
 
-### Performance Analytics
+### File Structure
 
-Track stats, identify patterns, and get insights to improve your game faster.
+```
+hoopscope/
+├── index.html              # Main homepage
+├── hoopscope-blog.html     # Blog page
+├── assets/
+│   ├── css/
+│   │   └── styles.css      # Main stylesheet
+│   ├── js/
+│   │   ├── main.js         # Homepage JavaScript
+│   │   └── blog.js         # Blog page JavaScript
+│   └── images/
+│       ├── favicon.svg     # Site favicon
+│       └── apple-touch-icon.png # iOS icon
+├── README.md               # Project documentation
+└── CHANGELOG.md            # Record of all changes
+```
 
-## Technology Stack
+## Setup & Development
 
-- HTML5
-- CSS3 with Tailwind CSS
-- Vanilla JavaScript
-- OpenAI API for AI features
-- Responsive design for all device sizes
+### Prerequisites
 
-## Installation
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/hoopscope-website.git
-   ```
-
-2. Open `index.html` in your browser to view the site locally.
-
-3. For API functionality, you'll need to set up a server with OpenAI API integration.
-
-## Development
+- A modern web browser
+- Basic understanding of HTML, CSS, and JavaScript
+- API key for OpenAI (for production use)
 
 ### Local Development
 
-To work on the site locally:
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/hoopscope.git
+   ```
 
-1. Make changes to HTML, CSS, or JS files
-2. Refresh the browser to see changes
+2. Open the project in your code editor
+
+3. For API functionality, set up environment variables (see "API Integration" section)
+
+4. Open `index.html` in your browser or use a local development server
 
 ### API Integration
 
-The site is designed to work with the OpenAI API via a secure backend. In production:
+The website uses OpenAI API for its AI features. For security reasons, API keys should never be exposed in client-side code. In production:
 
-1. Create a backend service to handle API requests
-2. Store API keys securely in environment variables
-3. Implement proper error handling and rate limiting
+1. Set up a secure backend proxy to handle API calls
+2. Store API keys as environment variables on the server
+3. Use environment-specific configuration for development/production
 
-## Project Structure
+## Deployment
 
-```
-/
-├── index.html           # Main homepage
-├── blog.html            # Blog listing page
-├── css/
-│   ├── styles.css       # Main stylesheet
-│   └── blog.css         # Blog-specific styles
-├── js/
-│   ├── main.js          # Core functionality
-│   ├── api.js           # OpenAI API integration
-│   └── blog.js          # Blog-specific functionality
-└── README.md            # Project documentation
-```
+For production deployment:
+
+1. Minify all CSS and JavaScript files
+2. Optimize images
+3. Set up proper caching headers
+4. Configure a secure backend for API requests
+5. Implement proper analytics and monitoring
+
+## Accessibility
+
+The website is built with accessibility in mind:
+
+- Semantic HTML structure
+- ARIA attributes for interactive elements
+- Keyboard navigation support
+- Focus states for interactive elements
+- Reduced motion options for animations
+- Color contrast ratios meeting WCAG standards
+
+## Browser Support
+
+The website is designed to work on:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Android Chrome)
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
@@ -88,4 +115,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-For questions or support, please contact [your-email@example.com](mailto:your-email@example.com).
+For questions or support, please contact hoopscope@example.com.
