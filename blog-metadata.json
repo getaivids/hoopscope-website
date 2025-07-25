@@ -1,0 +1,29 @@
+[
+  {
+    "title": "The Biomechanics of an Unshakeable Handle",
+    "author": "Dr. Evelyn Reed",
+    "date": "2025-09-18",
+    "category": "Analytics",
+    "tags": ["ball handling", "biomechanics", "training"],
+    "description": "How motion capture and pressure-sensing basketballs reveal the science behind elite ball handles.",
+    "image": "https://images.unsplash.com/photo-1598136397221-717618571b56?q=80&w=2070&auto=format&fit=crop"
+  },
+  {
+    "title": "Beyond the Arc: How Shot-Selection Defines Modern Offenses",
+    "author": "Alex Rivera",
+    "date": "2025-07-05",
+    "category": "Analytics",
+    "tags": ["three pointers", "offense", "NBA", "analytics"],
+    "description": "A data-driven look at how three-point shooting and court mapping shape today's high-powered offenses.",
+    "image": "https://images.unsplash.com/photo-1608245449223-342757f43769?q=80&w=2070&auto=format&fit=crop"
+  },
+  {
+    "title": "A Day in the Life: Off-Season Training with a Pro",
+    "author": "Jasmine Chen",
+    "date": "2025-06-28",
+    "category": "Pro Insights",
+    "tags": ["workout", "pro insights", "training", "daily routine"],
+    "description": "Inside a pro athlete's off-season: strength, skill, and data-driven habit routines.",
+    "image": "https://images.unsplash.com/photo-1594488541269-c4b5a73c3374?q=80&w=1974&auto=format&fit=crop"
+  }
+]
