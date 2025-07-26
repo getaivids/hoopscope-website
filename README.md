@@ -1,37 +1,21 @@
 # Hoopscope Website
+Modern basketball analytics & community site. Data-driven, AI-powered. Maintained by Get AI. Major update work in progress (see CHANGELOG.md).
 
-## Overview
-Hoopscope delivers data-driven basketball training, analytics, and insightful blog content. This project contains the main website source files and supporting documentation.
+## Main Features
+- Responsive, mobile-friendly design (Tailwind CSS)
+- AI-powered workout plan generator (soon: OpenAI API integration)
+- Analytics/stat visualization modules
+- Dynamic blog/content sections
+- SEO fundamentals
 
-## Key Features
-- Performance Analytics Dashboard
-- Pro League Data Integration
-- AI-Powered Custom Workout Plan Generator (OpenAI API)
-- Responsive, Accessibility-First UI with TailwindCSS
-- Dynamic, AI-Enhanced Blog Section
+## Branch: update-ai-improvement
+Major update in progress:
+- Full OpenAI API integration
+- Improved error handling & security
+- Accessibility, SEO, and performance optimizations
 
-## Folder Structure
-- `/Code` — Website HTML, CSS, JS
-- `/Blog Content` — Markdown and draft blog posts
-- `/Documentation` — Reports, guides, design documentation
-- `/Version History` — Snapshots of past versions
-- `/Changelog` — Summaries of changes per version
+## Folder Structure (Google Drive)
+- hoopscope-website-code: Web source, assets, documentation
+- hoopscope-blog-content: Blog articles, content drafts, JSON, assets
 
-## API Security
-- OpenAI API key must be provided via environment variable at runtime (never hardcoded).
-- See `.env.example` for environment requirements.
-
-## Contributing
-- Use feature branches for all new features/fixes.
-- Submit Pull Requests with clear descriptions and changelog updates.
-
-## Run Locally
-- Clone the repository
-- Configure environment variables
-- Open `index.html` in a browser or use a local HTTP server
-
-## Reporting Bugs/Feature Requests
-- Open an Issue in GitHub with details and reproduction steps for bugs, or with details for feature requests.
-
----
-2025 Hoopscope Technologies Inc. All Rights Reserved.
+## See changelog for update history.
