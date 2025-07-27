@@ -1,0 +1,33 @@
+Hoopscope Website Update Changelog
+
+## Summary of Improvements & Fixes
+- Debugged HTML/CSS/JS: fixed syntax and script errors, alt text, and aria labels for accessibility.
+- Enhanced responsive design: improved grid/flex, better mobile flow, tested cross-device.
+- JavaScript: replaced Gemini API with secure OpenAI fetch using environment API key, robust error handling, loader improvements, aria/live/keyboard.
+- Performance: images set to lazy load, critical CSS inlined, reduced DOM queries, added element caching.
+- Accessibility: improved color contrast, labeled modal buttons, better focus states, alt attributes.
+- SEO: added proper meta descriptions, blog post structured data, title and keywords, improved content for search engines.
+- Blog: reviewed posts, improved clarity, suggested new topics, ensured analytics/data-training content alignment.
+
+## Performance Impact
+- Page loads faster (image lazy loading, smaller JS, less layout shift).
+- Enhanced accessibility (better scores in Lighthouse).
+- Improved SEO reach.
+
+## Code/Structure Changes
+- /code/index-improved.html: All code improvements.
+- /content/: Suggested and revised blog articles (see blog-README).
+- /changelog/CHANGELOG.txt: This file.
+
+## Recommendations
+- Add unit and E2E tests for AI functions.
+- Periodically review AI prompt quality.
+- Expand blog on NBA analytics/data science.
+- Add API rate-limit warnings for AI calls.
+- Continue using Git branches and PR for all major updates.
+
+## New Features
+- OpenAI API integration (workout generator/blog assistant) with secure key management.
+- Error/timeout handlers for all API calls.
+- Improved ARIA/keyboard for all modals.
+- Lazy image/component loading.
