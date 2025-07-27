@@ -1,37 +1,16 @@
 # Hoopscope Website
 
-## Overview
-Hoopscope delivers data-driven basketball training, analytics, and insightful blog content. This project contains the main website source files and supporting documentation.
+- Modern basketball analytics & training platform.
+- AI-powered features: personalized plans, blog Q&A.
+- Content and design align with data-driven player development.
+- Built for performance, accessibility, and engagement.
 
-## Key Features
-- Performance Analytics Dashboard
-- Pro League Data Integration
-- AI-Powered Custom Workout Plan Generator (OpenAI API)
-- Responsive, Accessibility-First UI with TailwindCSS
-- Dynamic, AI-Enhanced Blog Section
-
-## Folder Structure
-- `/Code` — Website HTML, CSS, JS
-- `/Blog Content` — Markdown and draft blog posts
-- `/Documentation` — Reports, guides, design documentation
-- `/Version History` — Snapshots of past versions
-- `/Changelog` — Summaries of changes per version
-
-## API Security
-- OpenAI API key must be provided via environment variable at runtime (never hardcoded).
-- See `.env.example` for environment requirements.
-
-## Contributing
-- Use feature branches for all new features/fixes.
-- Submit Pull Requests with clear descriptions and changelog updates.
-
-## Run Locally
-- Clone the repository
-- Configure environment variables
-- Open `index.html` in a browser or use a local HTTP server
-
-## Reporting Bugs/Feature Requests
-- Open an Issue in GitHub with details and reproduction steps for bugs, or with details for feature requests.
-
----
-2025 Hoopscope Technologies Inc. All Rights Reserved.
+## Updates
+- Switched Gemini API to OpenAI API (key via env var, not in code)
+- Improved accessibility (landmarks, image alts, color contrast)
+- SEO optimization (better headers, metadata)
+- Added lazy loading for images
+- Mobile/layout responsive review (minor breakpoints tuned)
+- Improved error handling throughout
+- Split JS (hoopscope-main.js) from HTML
+- All changes documented in `changelog.md`
