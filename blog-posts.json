@@ -1,0 +1,34 @@
+[
+  {
+    "title": "The Biomechanics of an Unshakeable Handle",
+    "author": "Dr. Evelyn Reed",
+    "date": "2025-09-18",
+    "category": "Analytics",
+    "image": "https://images.unsplash.com/photo-1598136397221-717618571b56?q=80&w=2070&auto=format&fit=crop",
+    "content": "Following our deep dive into the jump shot, we're back in the lab to unravel the secrets of elite ball handling. Using motion capture and new pressure-sensing basketballs, we analyze how players maintain perfect control. From body posture to the subtle forces applied, we explore the principles that turn a simple bounce into an unshakeable handle."
+  },
+  {
+    "title": "Beyond the Arc: How Shot-Selection Defines Modern Offenses",
+    "author": "Alex Rivera",
+    "date": "2025-07-05",
+    "category": "Analytics",
+    "image": "https://images.unsplash.com/photo-1608245449223-342757f43769?q=80&w=2070&auto=format&fit=crop",
+    "content": "The three-point line has revolutionized basketball. We dive into the data showing how spacing and shot selection are now the keys to unlocking high-powered offense. The corner three, once an afterthought, is now one of the most valuable shots in basketball."
+  },
+  {
+    "title": "A Day in the Life: Off-Season Training with a Pro",
+    "author": "Jasmine Chen",
+    "date": "2025-06-28",
+    "category": "Pro Insights",
+    "image": "https://images.unsplash.com/photo-1594488541269-c4b5a73c3374?q=80&w=1974&auto=format&fit=crop",
+    "content": "What does it really take to compete at the highest level? We follow a pro player through their rigorous off-season regimen, revealing the dedication required for greatness. The day starts at 5 AM with strength and conditioning, skill work, film study, and recovery sessions."
+  },
+  {
+    "title": "How to Use Tracking Data for Defense Improvement",
+    "author": "Staff",
+    "date": "2025-08-01",
+    "category": "Basketball Analytics",
+    "image": "https://placehold.co/600x400/222/aaa?text=Defense+Analytics",
+    "content": "Defensive metrics are rapidly evolving. This article will introduce new ways players can use modern player tracking to identify where and how they get beat on defense, and drill down into actionable improvement steps."
+  }
+]
