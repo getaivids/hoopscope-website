@@ -2,6 +2,7 @@
  * API Integration for Hoopscope
  * 
  * Handles OpenAI API calls for the workout plan generator and blog helper
+ * by communicating with a secure backend proxy endpoint.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,107 +22,49 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentArticleForAI = '';
 
     /**
-     * Calls the OpenAI API via a secure backend proxy
-     * @param {string} prompt - The prompt to send to the API
-     * @param {Object} options - Additional options for the API call
-     * @returns {Promise<string|null>} - The API response or null if there was an error
+     * Calls the OpenAI API via a secure backend proxy.
+     * @param {string} prompt - The prompt to send to the API.
+     * @param {Object} options - Additional options for the API call.
+     * @param {Function} options.onStart - Callback to run when the API call begins.
+     * @param {Function} options.onComplete - Callback to run with the successful response text.
+     * @param {Function} options.onError - Callback to run when an error occurs.
+     * @param {string} options.model - The model to use (e.g., 'gpt-4-turbo').
+     * @param {Object} options.responseFormat - The desired response format (e.g., { type: 'json_object' }).
+     * @returns {Promise<void>}
      */
     const callOpenAI = async (prompt, options = {}) => {
-        // This would be a proxy endpoint on your server that securely adds the API key
-        const apiUrl = '/api/openai';
+        const { onStart, onComplete, onError, ...apiOptions } = options;
+        const apiUrl = '/api/openai'; // The secure backend proxy endpoint
+
+        if (onStart) {
+            onStart();
+        }
         
         try {
-            // Show loading state if a callback is provided
-            if (options.onStart) {
-                options.onStart();
-            }
-            
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    prompt: prompt,
-                    model: options.model || 'gpt-4', // Default to GPT-4
-                    max_tokens: options.maxTokens || 500,
-                    temperature: options.temperature || 0.7,
-                    response_format: options.responseFormat || { type: "text" }
+                    prompt,
+                    ...apiOptions // Pass model, response_format, etc. to the backend
                 })
             });
-            
-            // For demo purposes, simulate API call
-            // In production, remove this and use the actual API response
+
             if (!response.ok) {
-                throw new Error(`API call failed with status: ${response.status}`);
+                const errorBody = await response.text();
+                throw new Error(`API call failed with status: ${response.status}. Body: ${errorBody}`);
             }
             
-            // For demo/testing, simulate a response with mock data
-            // In production, use: const data = await response.json();
-            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
+            const resultText = await response.text(); // Use .text() for flexibility (JSON or plain text)
             
-            let mockResponse;
-            
-            // Different mock responses based on prompt type
-            if (prompt.includes('workout plan') || prompt.includes('training plan')) {
-                mockResponse = JSON.stringify({
-                    planTitle: "Explosive Ball Handling & Finishing Workout",
-                    duration: "60 minutes",
-                    phases: [
-                        {
-                            phaseTitle: "Warm-up (10 minutes)",
-                            exercises: [
-                                { name: "Dynamic Stretching", details: "Focus on shoulders, wrists, hips, and ankles - 3 minutes" },
-                                { name: "Jogging with Ball", details: "Light dribbling while jogging around the court - 3 minutes" },
-                                { name: "Form Shooting", details: "Close-range form shots to get touch - 4 minutes" }
-                            ]
-                        },
-                        {
-                            phaseTitle: "Ball Handling Drills (25 minutes)",
-                            exercises: [
-                                { name: "Stationary Dribbling Series", details: "Low, high, crossover, between legs, behind back - 30 seconds each variation, 2 sets" },
-                                { name: "Cone Weaving", details: "Set up 5 cones in a line, practice different dribble moves around each cone - 8 minutes" },
-                                { name: "Two-Ball Dribbling", details: "Alternate dribbling two balls at different heights - 5 minutes" },
-                                { name: "Hesitation & Change of Pace", details: "Practice sudden speed changes while dribbling toward the hoop - 6 minutes" }
-                            ]
-                        },
-                        {
-                            phaseTitle: "Finishing Drills (20 minutes)",
-                            exercises: [
-                                { name: "Mikan Drill", details: "Alternating layups from both sides of the basket - 4 minutes" },
-                                { name: "Reverse Layup Series", details: "Practice reverse layups from both sides - 5 minutes" },
-                                { name: "Euro Step Finishes", details: "Drive from wing, euro step around cone, finish at rim - 5 minutes" },
-                                { name: "Contact Finishes", details: "Practice finishing through simulated contact (can use a pad if available) - 6 minutes" }
-                            ]
-                        },
-                        {
-                            phaseTitle: "Cool Down (5 minutes)",
-                            exercises: [
-                                { name: "Free Throws", details: "Practice 10 free throws while catching your breath" },
-                                { name: "Static Stretching", details: "Focus on shoulders, wrists, forearms, and lower body - hold each stretch for 30 seconds" }
-                            ]
-                        }
-                    ]
-                });
-            } else if (prompt.includes('summarize') || prompt.includes('summary')) {
-                mockResponse = "• Ball handling is based on scientific principles of biomechanics, not just natural talent\n• Lowering your center of gravity by bending knees creates stability and shortens the dribble path\n• Elite dribblers use finger pads for control and palm for power, pushing the ball rather than slapping it";
-            } else {
-                mockResponse = "Based on the article, basketball dribbling is a complex skill combining physics principles and refined technique. The author explains that lowering your center of gravity through proper stance is crucial for stability. This matches what professional coaches teach - a lower stance gives you better balance and control during dynamic movements. The article also emphasizes using fingertips rather than palms for precision control, which aligns with biomechanical research showing how fine motor control in fingertips allows for precise directional adjustments.";
+            if (onComplete) {
+                onComplete(resultText);
             }
-            
-            // Handle completion callback if provided
-            if (options.onComplete) {
-                options.onComplete(mockResponse);
-            }
-            
-            return mockResponse;
         } catch (error) {
             console.error("OpenAI API Error:", error);
-            
-            // Handle error callback if provided
-            if (options.onError) {
-                options.onError(error);
+            if (onError) {
+                onError(error);
             }
-            
-            return null;
         }
     };
 
@@ -147,6 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const handleStart = () => {
                 generateBtnText.classList.add('hidden');
                 generateLoader.classList.remove('hidden');
+                workoutPlanContent.innerHTML = ''; // Clear previous content
+                workoutModal.classList.remove('hidden');
+                workoutModal.setAttribute('aria-hidden', 'false');
             };
             
             // Handle completion
@@ -175,17 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     workoutPlanContent.innerHTML = html;
                 } catch (e) {
+                    console.error("Failed to parse workout plan JSON:", e);
                     workoutPlanContent.innerHTML = `
                         <div class="p-4 bg-red-900/40 border border-red-700 rounded-lg mb-4">
-                            <p class="text-red-400">Could not generate the plan. Please try again.</p>
+                            <p class="text-red-400">Could not generate the plan. The AI returned an invalid format.</p>
                             <p class="text-red-400 text-sm mt-2">Error: ${e.message}</p>
                         </div>
                     `;
                 }
-                
-                // Show the modal
-                workoutModal.classList.remove('hidden');
-                workoutModal.setAttribute('aria-hidden', 'false');
             };
             
             // Handle errors
@@ -196,12 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 workoutPlanContent.innerHTML = `
                     <div class="p-4 bg-red-900/40 border border-red-700 rounded-lg mb-4">
                         <p class="text-red-400">Sorry, there was an error generating your workout plan.</p>
-                        <p class="text-red-400 text-sm mt-2">Please try again later.</p>
+                        <p class="text-red-400 text-sm mt-2">${error.message}</p>
                     </div>
                 `;
-                
-                workoutModal.classList.remove('hidden');
-                workoutModal.setAttribute('aria-hidden', 'false');
             };
             
             // Prepare the prompt
@@ -215,9 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 onComplete: handleComplete,
                 onError: handleError,
                 responseFormat: { type: "json_object" },
-                model: "gpt-4-turbo",
-                temperature: 0.7,
-                maxTokens: 800
+                model: "gpt-4-turbo"
             });
         });
     }
@@ -242,26 +180,38 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Call the API
         const summary = await callOpenAI(prompt, {
-            temperature: 0.5,
-            maxTokens: 300
+            model: "gpt-4-turbo"
         });
-        
-        if (summary) {
-            blogHelperOutput.innerText = summary;
-        } else {
-            blogHelperOutput.innerHTML = `
-                <div class="p-4 bg-red-900/40 border border-red-700 rounded-lg">
-                    <p class="text-red-400">Could not generate summary. Please try again.</p>
-                </div>
-            `;
-        }
+
+        // The callOpenAI function now uses callbacks, so we adjust.
+        callOpenAI(prompt, {
+            onComplete: (summary) => {
+                if (summary) {
+                    blogHelperOutput.innerText = summary;
+                } else {
+                    blogHelperOutput.innerHTML = `
+                        <div class="p-4 bg-red-900/40 border border-red-700 rounded-lg">
+                            <p class="text-red-400">The AI returned an empty summary. Please try again.</p>
+                        </div>
+                    `;
+                }
+            },
+            onError: (error) => {
+                 blogHelperOutput.innerHTML = `
+                    <div class="p-4 bg-red-900/40 border border-red-700 rounded-lg">
+                        <p class="text-red-400">Could not generate summary. Please try again.</p>
+                        <p class="text-slate-500 text-xs mt-1">${error.message}</p>
+                    </div>
+                `;
+            }
+        });
     };
 
     /**
      * Handles the blog helper "Ask" button
      */
     if (blogHelperAskBtn) {
-        blogHelperAskBtn.addEventListener('click', async () => {
+        const askQuestion = async () => {
             const userQuestion = blogHelperPromptInput.value;
             
             if (!userQuestion.trim() || !currentArticleForAI) return;
@@ -273,29 +223,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const prompt = `Based on the article provided, answer the following question: "${userQuestion}"\n\nArticle:\n${currentArticleForAI}`;
             
             // Call the API
-            const answer = await callOpenAI(prompt, {
-                temperature: 0.7,
-                maxTokens: 400
+            await callOpenAI(prompt, {
+                onComplete: (answer) => {
+                    if (answer) {
+                        blogHelperOutput.innerText = answer;
+                    } else {
+                        blogHelperOutput.innerHTML = `
+                            <div class="p-4 bg-red-900/40 border border-red-700 rounded-lg">
+                                <p class="text-red-400">The AI returned an empty answer.</p>
+                            </div>
+                        `;
+                    }
+                },
+                onError: (error) => {
+                    blogHelperOutput.innerHTML = `
+                        <div class="p-4 bg-red-900/40 border border-red-700 rounded-lg">
+                            <p class="text-red-400">Sorry, I could not answer that question.</p>
+                             <p class="text-slate-500 text-xs mt-1">${error.message}</p>
+                        </div>
+                    `;
+                }
             });
-            
-            if (answer) {
-                blogHelperOutput.innerText = answer;
-            } else {
-                blogHelperOutput.innerHTML = `
-                    <div class="p-4 bg-red-900/40 border border-red-700 rounded-lg">
-                        <p class="text-red-400">Sorry, I could not answer that question.</p>
-                    </div>
-                `;
-            }
             
             // Clear the input field
             blogHelperPromptInput.value = '';
-        });
+        };
+
+        blogHelperAskBtn.addEventListener('click', askQuestion);
         
-        // Add keypress event for the input field
         blogHelperPromptInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                blogHelperAskBtn.click();
+                askQuestion();
             }
         });
     }

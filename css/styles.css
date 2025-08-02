@@ -7,6 +7,15 @@ body {
     overflow-x: hidden;
 }
 
+/* Lazy Loaded Images */
+img[loading="lazy"] {
+    filter: blur(0.5px);
+    transition: filter 200ms ease;
+}
+img[loading="lazy"].loaded {
+    filter: none;
+}
+
 /* Typography */
 .holographic-glow-hard {
      text-shadow: 0 0 8px rgba(251, 146, 60, 0.5), 0 0 12px rgba(249, 115, 22, 0.3);
@@ -192,4 +201,11 @@ body {
     .card-bg:hover {
         transform: none;
     }
+}
+
+/* Specific overrides for very small screens */
+@media (max-width: 500px) {
+    h1, h2, h3 { font-size: 1.2em !important; }
+    header, main, section, footer, .container, .p-6, .p-8 { padding: 6px !important; }
+    .card-bg { min-width: 95vw !important; }
 }
