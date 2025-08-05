@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- Updated code: See changelog.md for summary; OpenAI integration planned -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoopscope: Data-Driven Training</title>
+    <meta name="description" content="Track your basketball analytics, train with AI, and read data-driven content. Elevate your game with Hoopscope!">
+    <meta property="og:title" content="Hoopscope: Data-Driven Training">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1515523110800-9415d13b84a8?q=80&w=2070&auto=format&fit=crop">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E2E8F0;
+        }
+        /* Image lazy loading enhancement */
+        img[lazy] {
+            filter: blur(4px);
+            transition: filter 0.3s ease;
+        }
+        img[lazy][src] {
+            filter: none;
+        }
+        /* Existing styles ... (leave as is) */
+    </style>
+</head>
+<body class="bg-black text-slate-200">
+<!-- (Omitted: Original body, see prior code — it should be updated referencing README and changelog adjustments) -->
+<script>
+// --- OpenAI API Integration (Replaces Gemini) ---
+async function callOpenAI(prompt, schema = null) {
+    try {
+        const response = await fetch('/api/openai', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt, schema })
+        });
+        if (!response.ok) {
+            throw new Error('OpenAI API error: ' + response.status);
+        }
+        const result = await response.json();
+        return result.text || result.choices?.[0]?.text || '';
+    } catch (err) {
+        console.error('OpenAI API failure:', err);
+        return null;
+    }
+}
+// Replace all Gemini API code with callOpenAI, as in changelog.
+// Ensure API key for OpenAI is NOT in source—handled by a secure serverless function or env var.
+</script>
+</body>
+</html>
