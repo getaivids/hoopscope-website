@@ -1,0 +1,27 @@
+/* site.css: Hoopscope custom CSS for theme and accessibility */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #000;
+  color: #E2E8F0;
+}
+.holographic-glow-hard {
+  text-shadow: 0 0 8px rgba(251, 146, 60, 0.5), 0 0 12px rgba(249, 115, 22, 0.3);
+}
+img[loading="lazy"] {
+  filter: blur(2px);
+  transition: filter .3s;
+}
+img[loading="lazy"].loaded {
+  filter: none;
+}
+
+/* Responsive fallback for accessibility */
+@media (max-width: 640px) {
+  .text-5xl, .text-7xl, .text-8xl {font-size: 2.5rem;}
+}
+
+/* Accessibility: focus style */
+a:focus {
+  outline: 2px solid #F97316;
+  outline-offset: 2px;
+}
