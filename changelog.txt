@@ -1,0 +1,16 @@
+# Changelog
+
+## Initial Refactor and Feature Enhancement (2025-08-05)
+
+- Migrated AI functionality from Gemini to OpenAI API (placeholder for secure env var integration)
+- Improved performance: lazy-loaded images, optimized intersection observers, minimized DOM manipulation
+- Enhanced accessibility: improved alt text, aria-labels, keyboard navigation on modals, color contrast
+- Responsive fixes for mobile devices (addressed layout, spacing on all breakpoints)
+- Improved error handling for API, image loading, and user input
+- Refactored JavaScript: more modular, added comments, consistent variable naming, descriptive commit structure
+- Blog section: improved content SEO, metadata, clarity and engagement for existing posts, added suggestions doc
+- README and documentation structure scaffolded
+- Recommendations for future features and enhancements documented
+
+---
+Sent from Den
