@@ -1,17 +1,22 @@
-# Hoopscope Changelog
+# Changelog
 
-## 2025-07-27
-- Full code audit: HTML/CSS/JS
-- Switched Gemini API calls to OpenAI API, with secure API key handling (use env vars, documentation for devs)
-- Improved accessibility: image alts, focusable modal buttons, color contrast
-- Added lazy loading for all feature images (native or intersection fallback)
-- Tuned responsive breakpoints for better mobile UX
-- Performance improvements: smaller image placeholders, reduced render blocking JS, non-blocking font load
-- Improved JavaScript error handling (async/await, UX fail states)
-- Blog section: improved clarity, snippets, metadata, richer summaries
-- Added sample blog meta/SEO
-- Updated README with latest updates
+## [v2.0] - 2025-09-07
 
-Next steps:
-- Add PWA support
-- More advanced analytics widgets for player tracking
+### Added
+- Integrated OpenAI API for AI features (workout plan, blog helper)
+- Secure API key handling via backend proxy
+- Lazy loading for all images
+- ARIA roles and focus management for modals
+- SEO meta tags and improved alt text
+
+### Changed
+- Improved blog post metadata and content snippets
+- Enhanced error handling for all async actions
+- Optimized prompts for AI calls
+
+### Fixed
+- Fixed accessibility issues in buttons and modals
+- Fixed responsive image cropping on mobile
+
+### Removed
+- Gemini API code and hardcoded API key
