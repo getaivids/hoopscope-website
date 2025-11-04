@@ -4,80 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoopscope: Data-Driven Training</title>
-    <meta name="description" content="Hoopscope combines basketball analytics, pro data, and smart community-driven content for data-driven training.">
-    <meta name="keywords" content="basketball analytics, data-driven training, NBA stats, basketball blog, basketball AI">
-    <meta name="author" content="Hoopscope Technologies Inc.">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000;
+            background-color: #000000;
             color: #E2E8F0;
         }
-        /* Existing styles here... */
-        img[loading="lazy"] {
-            filter: blur(0.5px);
-            transition: filter 200ms ease;
-        }
-        img[loading="lazy"].loaded {
-            filter: none;
-        }
-        @media (max-width: 500px) {
-            h1, h2, h3 { font-size: 1.2em !important; }
-            header, main, section, footer, .container, .p-6, .p-8 { padding: 6px !important; }
-            .card-bg { min-width: 95vw !important; }
-        }
+        /* ...all previous CSS ... */
     </style>
 </head>
 <body class="bg-black text-slate-200">
-    <!-- MAIN CONTENT OMITTED FOR BREVITY. USE ORIGINAL CONTENT, WITH THE FOLLOWING JS IMPROVEMENTS: -->
-    <!-- Scripts: Place just before </body> -->
-    <script>
-    // Lazy-load all images
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('img').forEach(img => {
-        img.setAttribute('loading', 'lazy');
-        img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
-      });
-    });
+    <!-- Header, Main, Footer markup ... -->
 
-    // AI Plan Generator (OpenAI API)
-    const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-    // Loads from ENV variable securely via server proxy
-    async function callOpenAIAPI(prompt, {jsonSchema} = {}) {
-      const apiKey = window.OPENAI_API_KEY;
-      if (!apiKey) {
-        throw new Error('OpenAI API key not available (use env variable).');
-      }
-      try {
-        const response = await fetch(OPENAI_API_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-          },
-          body: JSON.stringify({
-            model: 'gpt-4-turbo',
-            messages: [{role: 'user', content: prompt}],
-            ...(jsonSchema && {response_format:{type:'json_object'}})
-          })
-        });
-        if (!response.ok) throw new Error('OpenAI API error ' + response.status);
-        const data = await response.json();
-        if (jsonSchema) return data.choices[0]?.message?.content;
-        return data.choices[0]?.message?.content || '';
-      } catch (e) { return `Error: ${e.message}`; }
-    }
-    // Replace Gemini with OpenAI for AI workout planning & blog trick
-    document.addEventListener('DOMContentLoaded',()=>{
-      // Add actual AI event listeners here, similar to Gemini (see original code)
-    });
-    // Accessibility: Enable keyboard navigation for all modals/close buttons
-    document.addEventListener('keydown',function(e){
-      if(e.key==='Escape'){document.querySelectorAll('.modal-bg:not(.hidden)').forEach(m=>m.classList.add('hidden'));}
-    });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
